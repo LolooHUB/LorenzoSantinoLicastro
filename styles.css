@@ -1,23 +1,37 @@
 /* ---------------------------------------------------- */
-/* 1. VARIABLES CSS (CUSTOM PROPERTIES) */
-/* Centraliza valores clave para facilitar futuras modificaciones. */
+/* 1. IMPORTAR FUENTES (Google Fonts) */
+/* ---------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@400;700&display=swap');
+
+/* ---------------------------------------------------- */
+/* 2. VARIABLES CSS (CUSTOM PROPERTIES) */
+/* Paleta inspirada en arte moderno y digital */
 /* ---------------------------------------------------- */
 :root {
-    /* Paleta de Colores */
-    --color-primary: #2c3e50;         /* Azul Oscuro (Headers) */
+    /* Paleta de Colores (Artística y Moderna) */
+    --color-primary: #1e3d59;         /* Azul Profundo (Base oscura) */
+    --color-secondary: #f4d06f;       /* Amarillo/Dorado (Acento cálido) */
+    --color-accent: #ff6e40;          /* Naranja Coral (Toque vibrante) */
     --color-text-dark: #333;
-    --color-text-paragraph: #555;
-    --color-background-main: #f4f4f4; /* Fondo principal */
-    --color-background-card: #fff;    /* Fondo de contenedores */
-    --color-shadow: rgba(0, 0, 0, 0.15); /* Sombra más definida */
+    --color-text-light: #fdfdfd;
+    --color-background-main: #e8eaf6; /* Fondo Lavanda/Gris suave */
+    --color-background-card: #fff;
     
-    /* Espaciado */
-    --spacing-default: 20px;
-    --spacing-large: 40px;
+    /* Fuentes */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+    
+    /* Espaciado y Estilos */
+    --spacing-m: 20px;
+    --spacing-l: 40px;
+    --spacing-xl: 80px;
+    --border-radius-default: 12px;
+    --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* ---------------------------------------------------- */
-/* 2. RESET Y ESTILOS BASE */
+/* 3. RESET Y ESTILOS GLOBALES */
 /* ---------------------------------------------------- */
 * {
     margin: 0;
@@ -26,92 +40,133 @@
 }
 
 body {
-    /* Usamos una tipografía más limpia y moderna (ej: 'Helvetica Neue' o 'Roboto') */
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
     background-color: var(--color-background-main);
     color: var(--color-text-dark);
-    padding: var(--spacing-default);
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Contenedor principal que envuelve todo (menos el header y footer si son full width) */
+.main-content {
+    max-width: 1280px; 
+    margin: 0 auto; 
+    padding: var(--spacing-m);
+    flex-grow: 1;
+    width: 100%;
+}
+
+/* ---------------------------------------------------- */
+/* 4. HEADER (Banner de bienvenida visual) */
+/* ---------------------------------------------------- */
 header {
     text-align: center;
-    margin-bottom: var(--spacing-large);
-    padding: 20px 0;
+    padding: var(--spacing-l) 0;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    /* Sombra profunda para destacar el banner */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: var(--spacing-l);
 }
 
 header h1 {
-    font-size: clamp(2.2em, 5vw, 3em); /* Tamaño responsivo con clamp() */
-    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: clamp(2.5em, 6vw, 4em);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 700; /* Más énfasis */
+    letter-spacing: 5px;
+    font-weight: 700;
+    /* Efecto de texto con acento */
+    text-shadow: 2px 2px 0 var(--color-secondary); 
 }
 
 /* ---------------------------------------------------- */
-/* 3. SECCIÓN DE VIDEOS (GRID) */
+/* 5. SECCIÓN DE VIDEOS (GRID Y TARJETAS) */
 /* ---------------------------------------------------- */
 .video-section {
+    /* Excelente Grid responsivo */
     display: grid;
-    /* Mínimo de columna a 320px para mejor lectura en móviles */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: var(--spacing-default);
-    justify-items: center;
+    gap: var(--spacing-m);
+    padding-bottom: var(--spacing-l);
 }
 
 .video-container {
     background-color: var(--color-background-card);
-    border-radius: 8px;
-    /* Sombra más suave */
-    box-shadow: 0 4px 10px var(--color-shadow); 
+    border-radius: var(--border-radius-default);
+    box-shadow: var(--shadow-default);
     overflow: hidden;
-    max-width: 600px;
     width: 100%;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil */
 }
 
 .video-container:hover {
-    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
-    box-shadow: 0 8px 16px var(--color-shadow);
+    transform: translateY(-8px); /* Elevación más notable */
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-accent); /* Borde de color al pasar el mouse */
 }
 
 .video-container h2 {
-    font-size: 1.3em; 
-    color: var(--color-background-card); /* Color de texto blanco (var(--color-text-light) si existiera) */
-    padding: 15px var(--spacing-default);
-    background-color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.25em;
+    color: var(--color-text-dark);
+    padding: 15px var(--spacing-m);
+    background-color: var(--color-background-main); /* Fondo más claro para el título de la tarjeta */
     margin: 0;
     font-weight: 500;
 }
 
 .video-container p {
-    padding: 15px;
-    font-size: 1em;
-    color: var(--color-text-paragraph); /* Color de texto de párrafo mejorado */
+    padding: 15px var(--spacing-m);
+    font-size: 0.95em;
+    color: var(--color-text-paragraph);
+    /* Límite de altura para la descripción (Mejor UX/UI) */
+    max-height: 4.8em; 
+    overflow: hidden;
+    margin-bottom: 10px;
 }
+
+/* ---------------------------------------------------- */
+/* 6. RESPONSIVIDAD DE VIDEO (¡Arreglo sin tocar HTML!) */
+/* Usamos el poder de aspect-ratio en navegadores modernos */
+/* ---------------------------------------------------- */
 
 .video-container iframe {
     width: 100%;
-    /* Mantenemos la altura fija original, ya que no podemos envolverlo con HTML.
-       Para la responsividad perfecta, el HTML sería necesario. */
-    height: 315px; 
+    /* Utiliza aspect-ratio para mantener la proporción 16:9 */
+    aspect-ratio: 16 / 9; 
+    /* Fallback para navegadores antiguos: */
+    /* padding-top: 56.25%; height: 0; */ 
+    height: auto; 
+    display: block;
     border: none;
-    /* Asegurar que el iframe ocupe todo el espacio de la tarjeta */
-    display: block; 
 }
 
 /* ---------------------------------------------------- */
-/* 4. FOOTER */
+/* 7. FOOTER (Área de contacto destacada) */
 /* ---------------------------------------------------- */
 footer {
     text-align: center;
-    margin-top: var(--spacing-large);
-    padding-top: 20px; /* Separación del contenido */
-    border-top: 1px solid #ddd;
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-m) 0;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
     font-size: 0.9em;
-    color: #777;
+    font-weight: 300;
 }
 
 footer p {
-    padding: 10px;
+    padding: var(--spacing-xs) 0;
+    margin: 0;
+}
+
+/* Estilo para los elementos de contacto dentro del footer */
+footer p:not(:last-child) {
+    /* Color de acento para números y correos */
+    color: var(--color-secondary); 
+    font-weight: 500;
+    margin-bottom: 5px;
 }
