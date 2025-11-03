@@ -1,33 +1,37 @@
 /* ---------------------------------------------------- */
 /* 1. IMPORTAR FUENTES (Google Fonts) */
+/* Usaremos 'Playfair Display' para títulos (elegancia artística)
+   y 'Lato' para el cuerpo (legibilidad moderna). */
 /* ---------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;900&display=swap');
 
 /* ---------------------------------------------------- */
 /* 2. VARIABLES CSS (CUSTOM PROPERTIES) */
-/* Paleta inspirada en arte moderno y digital */
+/* Una paleta de colores vibrante y contrastada. */
 /* ---------------------------------------------------- */
 :root {
-    /* Paleta de Colores (Artística y Moderna) */
-    --color-primary: #1e3d59;         /* Azul Profundo (Base oscura) */
-    --color-secondary: #f4d06f;       /* Amarillo/Dorado (Acento cálido) */
-    --color-accent: #ff6e40;          /* Naranja Coral (Toque vibrante) */
+    /* Paleta de Colores - Inspiración en Pinturas Modernas/Digital Art */
+    --color-deep-ocean: #0a1128;      /* Azul muy oscuro, casi negro, para fondos primarios */
+    --color-sky-blue: #034078;        /* Azul vibrante, para elementos principales */
+    --color-sun-yellow: #f8d721;      /* Amarillo brillante, acento energizante */
+    --color-vibrant-magenta: #a7226e; /* Magenta/Rosa fuerte, acento artístico */
+    --color-soft-gray: #f2f4f6;       /* Gris muy suave para fondos secundarios */
+    --color-white: #ffffff;
     --color-text-dark: #333;
-    --color-text-light: #fdfdfd;
-    --color-background-main: #e8eaf6; /* Fondo Lavanda/Gris suave */
-    --color-background-card: #fff;
-    
+
     /* Fuentes */
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Roboto', sans-serif;
+    --font-heading: 'Playfair Display', serif; /* Para títulos principales */
+    --font-body: 'Lato', sans-serif;           /* Para texto de párrafo */
     
     /* Espaciado y Estilos */
+    --spacing-xs: 5px;
+    --spacing-s: 10px;
     --spacing-m: 20px;
     --spacing-l: 40px;
     --spacing-xl: 80px;
-    --border-radius-default: 12px;
-    --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --border-radius-default: 15px; /* Bordes más redondeados */
+    --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    --shadow-bold: 0 10px 30px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
 }
 
 /* ---------------------------------------------------- */
@@ -42,17 +46,17 @@
 body {
     font-family: var(--font-body);
     line-height: 1.6;
-    background-color: var(--color-background-main);
+    background: linear-gradient(135deg, var(--color-background-main), var(--color-soft-gray)); /* Fondo con gradiente */
     color: var(--color-text-dark);
-    padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Evita desbordamiento horizontal */
 }
 
-/* Contenedor principal que envuelve todo (menos el header y footer si son full width) */
+/* Contenedor principal que envuelve todo el contenido para centrar */
 .main-content {
-    max-width: 1280px; 
+    max-width: 1300px; 
     margin: 0 auto; 
     padding: var(--spacing-m);
     flex-grow: 1;
@@ -60,102 +64,102 @@ body {
 }
 
 /* ---------------------------------------------------- */
-/* 4. HEADER (Banner de bienvenida visual) */
+/* 4. HEADER (Banner Impactante y Artístico) */
 /* ---------------------------------------------------- */
 header {
     text-align: center;
-    padding: var(--spacing-l) 0;
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    /* Sombra profunda para destacar el banner */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-xl) var(--spacing-m);
+    background: linear-gradient(45deg, var(--color-sky-blue), var(--color-deep-ocean)); /* Gradiente azul profundo */
+    color: var(--color-white);
+    box-shadow: var(--shadow-bold);
     margin-bottom: var(--spacing-l);
+    position: relative;
+    overflow: hidden; /* Para animaciones de fondo si las hubiera */
 }
 
 header h1 {
     font-family: var(--font-heading);
-    font-size: clamp(2.5em, 6vw, 4em);
+    font-size: clamp(3em, 7vw, 5em); /* Más grande y dramático */
     text-transform: uppercase;
-    letter-spacing: 5px;
-    font-weight: 700;
-    /* Efecto de texto con acento */
-    text-shadow: 2px 2px 0 var(--color-secondary); 
+    letter-spacing: 6px; /* Aumento de espaciado */
+    font-weight: 900; /* Extra bold */
+    line-height: 1.1;
+    text-shadow: 4px 4px 0 var(--color-sun-yellow), 
+                 8px 8px 0 var(--color-vibrant-magenta); /* Doble sombra de color */
+    position: relative;
+    z-index: 1;
 }
 
 /* ---------------------------------------------------- */
-/* 5. SECCIÓN DE VIDEOS (GRID Y TARJETAS) */
+/* 5. SECCIÓN DE VIDEOS (GRID Y TARJETAS Artísticas) */
 /* ---------------------------------------------------- */
 .video-section {
-    /* Excelente Grid responsivo */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: var(--spacing-m);
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); /* Tarjetas un poco más grandes */
+    gap: var(--spacing-l); /* Mayor separación entre tarjetas */
     padding-bottom: var(--spacing-l);
 }
 
 .video-container {
-    background-color: var(--color-background-card);
+    background-color: var(--color-white);
     border-radius: var(--border-radius-default);
-    box-shadow: var(--shadow-default);
+    box-shadow: var(--shadow-light);
     overflow: hidden;
     width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 2px solid transparent; /* Borde transparente inicial */
 }
 
 .video-container:hover {
-    transform: translateY(-8px); /* Elevación más notable */
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-accent); /* Borde de color al pasar el mouse */
+    transform: translateY(-12px) scale(1.02); /* Efecto de elevación más dramático y ligero zoom */
+    box-shadow: var(--shadow-bold);
+    border-color: var(--color-vibrant-magenta); /* Borde de acento al pasar el mouse */
 }
 
 .video-container h2 {
-    font-family: var(--font-heading);
-    font-size: 1.25em;
+    font-family: var(--font-body);
+    font-size: 1.4em; /* Títulos de video más prominentes */
     color: var(--color-text-dark);
     padding: 15px var(--spacing-m);
-    background-color: var(--color-background-main); /* Fondo más claro para el título de la tarjeta */
+    background-color: var(--color-soft-gray); /* Fondo suave para títulos de tarjeta */
     margin: 0;
-    font-weight: 500;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .video-container p {
     padding: 15px var(--spacing-m);
-    font-size: 0.95em;
-    color: var(--color-text-paragraph);
-    /* Límite de altura para la descripción (Mejor UX/UI) */
-    max-height: 4.8em; 
+    font-size: 1em;
+    color: var(--color-text-dark);
+    max-height: 6em; /* Más espacio para la descripción */
     overflow: hidden;
     margin-bottom: 10px;
 }
 
 /* ---------------------------------------------------- */
-/* 6. RESPONSIVIDAD DE VIDEO (¡Arreglo sin tocar HTML!) */
-/* Usamos el poder de aspect-ratio en navegadores modernos */
+/* 6. RESPONSIVIDAD DE VIDEO (Aspect Ratio para iframe) */
+/* Esto mantiene la proporción 16:9 sin tocar el HTML. */
 /* ---------------------------------------------------- */
-
 .video-container iframe {
     width: 100%;
-    /* Utiliza aspect-ratio para mantener la proporción 16:9 */
-    aspect-ratio: 16 / 9; 
-    /* Fallback para navegadores antiguos: */
-    /* padding-top: 56.25%; height: 0; */ 
+    aspect-ratio: 16 / 9; /* Esto es la clave para la responsividad sin HTML */
     height: auto; 
     display: block;
     border: none;
 }
 
 /* ---------------------------------------------------- */
-/* 7. FOOTER (Área de contacto destacada) */
+/* 7. FOOTER (Área de contacto con estilo) */
 /* ---------------------------------------------------- */
 footer {
     text-align: center;
     margin-top: var(--spacing-xl);
-    padding: var(--spacing-m) 0;
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    font-size: 0.9em;
+    padding: var(--spacing-l) 0;
+    background-color: var(--color-deep-ocean); /* Fondo oscuro profundo */
+    color: var(--color-white);
+    font-size: 1em;
     font-weight: 300;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3); /* Sombra hacia arriba */
 }
 
 footer p {
@@ -165,8 +169,14 @@ footer p {
 
 /* Estilo para los elementos de contacto dentro del footer */
 footer p:not(:last-child) {
-    /* Color de acento para números y correos */
-    color: var(--color-secondary); 
-    font-weight: 500;
-    margin-bottom: 5px;
+    color: var(--color-sun-yellow); /* Color de acento para contactos */
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+footer p:last-child {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.7); /* Texto de copyright más suave */
+    margin-top: 15px;
 }
