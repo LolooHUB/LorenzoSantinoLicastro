@@ -3,14 +3,12 @@ name: Deploy Portfolio
 on:
   push:
     branches:
-      - main  # Se ejecutará cada vez que se haga push a la rama main
+      - main
 
-# 🔑 SOLUCIÓN AL ERROR 403:
-# Otorga permisos de escritura al GITHUB_TOKEN para publicar en Pages
 permissions:
-  contents: read    # Necesario para que checkout@v2 clone el repositorio
-  pages: write      # NECESARIO para que peaceiris/actions-gh-pages@v3 haga el push
-  id-token: write   # Recomendado para la autenticación moderna de GH Pages
+  contents: write  # Importante para que la acción pueda crear la rama gh-pages
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
@@ -18,27 +16,12 @@ jobs:
 
     steps:
     - name: 📦 Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3 # Actualizado a v3 (más estable)
 
-    # Si tu proyecto NO usa Node.js, puedes eliminar este paso
-    - name: 🟢 Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14' # O la versión que necesites (ej: '20')
-    
-    # Si tu proyecto necesita instalación y build, añade estos pasos:
-    # - name: ⚙️ Install Dependencies
-    #   run: npm install
-    
-    # - name: 🏗️ Build Project
-    #   run: npm run build
-      
     - name: 🚀 Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        # Usa el token predeterminado, que ahora tiene permiso de escritura
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        # Publicar todo el contenido de la raíz del repositorio
         publish_dir: ./
-        # Si usaras la rama 'gh-pages'
-        # publish_branch: gh-pages
+        # Excluimos el archivo del workflow para que no se duplique en la rama de salida
+        exclude_assets: '.github/'
