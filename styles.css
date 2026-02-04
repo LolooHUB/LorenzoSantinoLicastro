@@ -1,182 +1,129 @@
-/* ---------------------------------------------------- */
-/* 1. IMPORTAR FUENTES (Google Fonts) */
-/* Usaremos 'Playfair Display' para títulos (elegancia artística)
-   y 'Lato' para el cuerpo (legibilidad moderna). */
-/* ---------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;900&display=swap');
-
-/* ---------------------------------------------------- */
-/* 2. VARIABLES CSS (CUSTOM PROPERTIES) */
-/* Una paleta de colores vibrante y contrastada. */
-/* ---------------------------------------------------- */
 :root {
-    /* Paleta de Colores - Inspiración en Pinturas Modernas/Digital Art */
-    --color-deep-ocean: #0a1128;      /* Azul muy oscuro, casi negro, para fondos primarios */
-    --color-sky-blue: #034078;        /* Azul vibrante, para elementos principales */
-    --color-sun-yellow: #f8d721;      /* Amarillo brillante, acento energizante */
-    --color-vibrant-magenta: #a7226e; /* Magenta/Rosa fuerte, acento artístico */
-    --color-soft-gray: #f2f4f6;       /* Gris muy suave para fondos secundarios */
-    --color-white: #ffffff;
-    --color-text-dark: #333;
-
-    /* Fuentes */
-    --font-heading: 'Playfair Display', serif; /* Para títulos principales */
-    --font-body: 'Lato', sans-serif;           /* Para texto de párrafo */
-    
-    /* Espaciado y Estilos */
-    --spacing-xs: 5px;
-    --spacing-s: 10px;
-    --spacing-m: 20px;
-    --spacing-l: 40px;
-    --spacing-xl: 80px;
-    --border-radius-default: 15px; /* Bordes más redondeados */
-    --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra suave */
-    --shadow-bold: 0 10px 30px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
-}
-
-/* ---------------------------------------------------- */
-/* 3. RESET Y ESTILOS GLOBALES */
-/* ---------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --primary: #00d2ff;
+    --secondary: #3a7bd5;
+    --dark: #0f0f12;
+    --card-bg: #1e1e26;
+    --text: #ffffff;
 }
 
 body {
-    font-family: var(--font-body);
-    line-height: 1.6;
-    background: linear-gradient(135deg, var(--color-background-main), var(--color-soft-gray)); /* Fondo con gradiente */
-    color: var(--color-text-dark);
-    min-height: 100vh;
+    background-color: var(--dark);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.background-glow {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,210,255,0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
+header {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(15,15,18,0) 0%, var(--dark) 100%), 
+                url('https://images.unsplash.com/photo-1492619334760-22402635af94?q=80&w=2000') center/cover;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,210,255,0.4);
+}
+
+.section { padding: 40px 20px; max-width: 1100px; margin: auto; }
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.video-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.video-card:hover { transform: translateY(-10px); }
+
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.card-info { padding: 15px; }
+
+/* MODAL STYLES */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--card-bg);
+    margin: 15% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.close {
+    position: absolute; right: 20px; top: 10px;
+    font-size: 28px; cursor: pointer;
+}
+
+.modal-buttons {
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* Evita desbordamiento horizontal */
+    gap: 15px;
+    margin-top: 20px;
 }
 
-/* Contenedor principal que envuelve todo el contenido para centrar */
-.main-content {
-    max-width: 1300px; 
-    margin: 0 auto; 
-    padding: var(--spacing-m);
-    flex-grow: 1;
-    width: 100%;
+.btn-modal {
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* ---------------------------------------------------- */
-/* 4. HEADER (Banner Impactante y Artístico) */
-/* ---------------------------------------------------- */
-header {
-    text-align: center;
-    padding: var(--spacing-xl) var(--spacing-m);
-    background: linear-gradient(45deg, var(--color-sky-blue), var(--color-deep-ocean)); /* Gradiente azul profundo */
-    color: var(--color-white);
-    box-shadow: var(--shadow-bold);
-    margin-bottom: var(--spacing-l);
-    position: relative;
-    overflow: hidden; /* Para animaciones de fondo si las hubiera */
-}
-
-header h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(3em, 7vw, 5em); /* Más grande y dramático */
-    text-transform: uppercase;
-    letter-spacing: 6px; /* Aumento de espaciado */
-    font-weight: 900; /* Extra bold */
-    line-height: 1.1;
-    text-shadow: 4px 4px 0 var(--color-sun-yellow), 
-                 8px 8px 0 var(--color-vibrant-magenta); /* Doble sombra de color */
-    position: relative;
-    z-index: 1;
-}
-
-/* ---------------------------------------------------- */
-/* 5. SECCIÓN DE VIDEOS (GRID Y TARJETAS Artísticas) */
-/* ---------------------------------------------------- */
-.video-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); /* Tarjetas un poco más grandes */
-    gap: var(--spacing-l); /* Mayor separación entre tarjetas */
-    padding-bottom: var(--spacing-l);
-}
-
-.video-container {
-    background-color: var(--color-white);
-    border-radius: var(--border-radius-default);
-    box-shadow: var(--shadow-light);
-    overflow: hidden;
-    width: 100%;
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-    border: 2px solid transparent; /* Borde transparente inicial */
-}
-
-.video-container:hover {
-    transform: translateY(-12px) scale(1.02); /* Efecto de elevación más dramático y ligero zoom */
-    box-shadow: var(--shadow-bold);
-    border-color: var(--color-vibrant-magenta); /* Borde de acento al pasar el mouse */
-}
-
-.video-container h2 {
-    font-family: var(--font-body);
-    font-size: 1.4em; /* Títulos de video más prominentes */
-    color: var(--color-text-dark);
-    padding: 15px var(--spacing-m);
-    background-color: var(--color-soft-gray); /* Fondo suave para títulos de tarjeta */
-    margin: 0;
-    font-weight: 700;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.video-container p {
-    padding: 15px var(--spacing-m);
-    font-size: 1em;
-    color: var(--color-text-dark);
-    max-height: 6em; /* Más espacio para la descripción */
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-/* ---------------------------------------------------- */
-/* 6. RESPONSIVIDAD DE VIDEO (Aspect Ratio para iframe) */
-/* Esto mantiene la proporción 16:9 sin tocar el HTML. */
-/* ---------------------------------------------------- */
-.video-container iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Esto es la clave para la responsividad sin HTML */
-    height: auto; 
-    display: block;
-    border: none;
-}
-
-/* ---------------------------------------------------- */
-/* 7. FOOTER (Área de contacto con estilo) */
-/* ---------------------------------------------------- */
-footer {
-    text-align: center;
-    margin-top: var(--spacing-xl);
-    padding: var(--spacing-l) 0;
-    background-color: var(--color-deep-ocean); /* Fondo oscuro profundo */
-    color: var(--color-white);
-    font-size: 1em;
-    font-weight: 300;
-    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3); /* Sombra hacia arriba */
-}
-
-footer p {
-    padding: var(--spacing-xs) 0;
-    margin: 0;
-}
-
-/* Estilo para los elementos de contacto dentro del footer */
-footer p:not(:last-child) {
-    color: var(--color-sun-yellow); /* Color de acento para contactos */
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-}
-
-footer p:last-child {
-    font-size: 0.85em;
-    color: rgba(255, 255, 255, 0.7); /* Texto de copyright más suave */
-    margin-top: 15px;
-}
+.mail { background: #ea4335; }
+.whatsapp { background: #25d366; }
