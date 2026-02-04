@@ -3,45 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Lorenzo Santino Licastro">
-    <title>Portafolio - Lorenzo Santino Licastro</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>CV Artístico | Lolo Licastro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
+    <div class="background-glow"></div>
+
     <header>
-        <h1>Portafolio de Lorenzo Santino Licastro</h1>
+        <div class="profile-container">
+            <h1>Lolo Licastro</h1>
+            <p class="tagline">Conductor • Actor • Entrevistador</p>
+            <button id="openContact" class="btn-primary">Contacto</button>
+        </div>
     </header>
-    
-    <section class="video-section">
-        <div class="video-container">
-            <h2>Inventar Pakapaka Pregunta Democracia // Cap 1.</h2>
-            <p>Inventar Paka Paka Pregunta Democracia fue un programa emitido en Paka Paka durante 2023, donde participe como conductor y entrevistador. En este capitulo, me presento como conductor del prorama</p>
-            <iframe src="https://www.youtube.com/embed/2mv0JAQ_hSc?si=uqRBUKOdz2dlKrrF" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
 
-        <div class="video-container">
-            <h2>Inventar Pakapaka Pregunta Democracia // Cap 2.</h2>
-            <p>Inventar Paka Paka Pregunta Democracia fue un programa emitido en Paka Paka durante 2023, donde participe como conductor y entrevistador. En este capitulo, me encargo de entrevistar a Rita Segato, junto a mi compañera.</p>
-            <iframe src="https://www.youtube.com/embed/obeJchwvvU4?si=fyQHJoA3ZFwLkfhT" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+    <main>
+        <section class="section">
+            <h2><i class="fas fa-star"></i> Experiencia en Pakapaka</h2>
+            <div class="video-grid">
+                
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/2mv0JAQ_hSc" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Inventar Pakapaka Pregunta: Democracia</h3>
+                        <p>Conducción integral y presentación (Cap. 1 - 2023).</p>
+                    </div>
+                </div>
 
-        <div class="video-container">
-            <h2>MARA GÓMEZ - INVENTAR PAKAPAKA PREGUNTA</h2>
-            <p>Este capitulo fue lanzado en 2022, perteneciente a Inventar Paka Paka pregunta, pero no formando parte de la misma edicion en la que fui conductor. En este capitulo, soy presentado como entrevistador, y entrevistamos a Mara Gomez, junto con mis tres colegas.</p>
-            <iframe src="https://www.youtube.com/embed/8lC21-gjxqM?si=ZtW1FjUOTbIVjdK7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/obeJchwvvU4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Entrevista a Rita Segato</h3>
+                        <p>Rol de entrevistador en profundidad (2023).</p>
+                    </div>
+                </div>
 
-        <div class="video-container">
-            <h2>VIDEO 4: Nombre del video</h2>
-            <p>Descripción sobre mi aparición dentro del video.</p>
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/8lC21-gjxqM" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Entrevista a Mara Gómez</h3>
+                        <p>Panelista y entrevistador (Edición 2022).</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="extra-grid">
+                <div class="extra-item">
+                    <h3><i class="fas fa-ad"></i> Publicidad</h3>
+                    <p>Extra en propaganda para <strong>Edenor</strong>.</p>
+                </div>
+                <div class="extra-item">
+                    <h3><i class="fas fa-clapperboard"></i> Formación</h3>
+                    <p>Talleres de Cinematografía y Realización Audiovisual.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>¡Hablemos!</h2>
+            <p>Elegí el medio que prefieras:</p>
+            <div class="modal-buttons">
+                <a href="mailto:lololicastro25@gmail.com" class="btn-modal mail">
+                    <i class="fas fa-envelope"></i> Enviar Email
+                </a>
+                <a href="https://wa.link/ds00uf" target="_blank" class="btn-modal whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
         </div>
-    </section>
+    </div>
 
     <footer>
-        <p>Email de Contacto: lololicastro25@gmail.com</p>
-        <p>Número Telefónico (Solo WhatsApp y llamadas): 9 11 2298-2685</p>
-        <p>&copy; 2025 Lorenzo Santino Licastro. Todos los derechos reservados.</p>
+        <p>© 2024 Lolo Licastro - Administrado por tutor legal</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
